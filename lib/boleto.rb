@@ -1,5 +1,6 @@
 require "boleto/version"
+require 'parseline'
 
 module Boleto
-  # Your code goes here...
+  autoload(:Parsers, 'boleto/parsers')
 end

@@ -20,9 +20,8 @@ module Boleto
       elsif parsed_options.version?
         print(VERSION)
       else
-        generator = Boleto::Generator.new(parsed_options.to_h)
-        generator.perform
-        print(generator.result)
+        generator = Boleto::Generator.for(parsed_options.to_h)
+        print(generator.perform)
       end
       STATUS_SUCCESS
     rescue OptionParser::InvalidOption, OptionParser::MissingArgument => error
