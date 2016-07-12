@@ -1,12 +1,10 @@
+require 'boleto/generators'
 module Boleto
   class Generator
-    def initialize(options)
-    end
-
-    def perform
-    end
-
-    def result
+    def self.for(options)
+      format = Generators.const_get(options[:format].capitalize)
+      bank = format.const_get(options[:bank].capitalize)
+      bank.new
     end
   end
 end
