@@ -13,24 +13,24 @@ module Boleto
           content = []
           content << header
           content += parser.pagamentos.map do |pagamento|
-            nosso_numero = "#{pagamento[:nosso_numero]}#{pagamento[:nosso_numero_dv]}"
-            ret_pagamento = '1'
-            ret_pagamento << '02'  # Empresa
-            ret_pagamento << ''.rjust(14, '0') # We don't have the company number
-            ret_pagamento << ''.rjust(3, '0')
-            ret_pagamento << pagamento[:identificacao_empresa].rjust(17, " ")
-            ret_pagamento << pagamento[:numero_controle].rjust(25, " ")
-            ret_pagamento << ''.rjust(8, '0')
-            ret_pagamento << nosso_numero.rjust(12, '0')
-            ret_pagamento << ''.rjust(10, '0')
-            ret_pagamento << ''.rjust(12, ' ')
-            ret_pagamento << pagamento[:indicador_rateio].rjust(1, "R")
+            identificacao_titulo = "#{pagamento[:identificacao_titulo]}#{pagamento[:digito_autoconferencia]}"
+            ret_pagamento = '1'                                                #  1 - Codigo do Registro
+            ret_pagamento << '02'                                              #  2 - Tipo de Inscrição da Empresa
+            ret_pagamento << ''.rjust(14, '0')                                 #  3 - Numero de Inscricao da Empresa
+            ret_pagamento << ''.rjust(3, '0')                                  #  4 - Zero
+            ret_pagamento << pagamento[:identificacao_empresa].rjust(17, " ")  #  5 - Identificacao Empresa
+            ret_pagamento << pagamento[:numero_controle].rjust(25, " ")        #  6 - Numero Controle do Participante
+            ret_pagamento << ''.rjust(8, '0')                                  #  7 - Zeros
+            ret_pagamento << identificacao_titulo.rjust(12, '0')               #  8 - Identificacao do Titulo no Banco
+            ret_pagamento << ''.rjust(10, '0')                                 #  9 - Uso do Banco
+            ret_pagamento << ''.rjust(12, ' ')                                 # 10 - Uso do Banco
+            ret_pagamento << pagamento[:indicador_rateio].rjust(1, "R")        # 11 - Indcador de Rateio
             ret_pagamento << ''.rjust(2, '0')
             ret_pagamento << pagamento[:identificacao_empresa][3]
             ret_pagamento << '02'
             ret_pagamento << Date.today.strftime('%d%m%y')
             ret_pagamento << pagamento[:numero_documento].rjust(10, "0")
-            ret_pagamento << nosso_numero.rjust(20, '0')
+            ret_pagamento << identificacao_titulo.rjust(20, '0')
             ret_pagamento << pagamento[:data_vencimento].rjust(6, '0')
             ret_pagamento << pagamento[:valor_titulo].rjust(13, '0')
             ret_pagamento << pagamento[:codigo_do_banco].rjust(3, '0')

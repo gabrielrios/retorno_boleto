@@ -55,8 +55,8 @@ RSpec.describe Boleto::Parsers::Cnab400::Bradesco do
 
   it "parses the payments" do
     expect(payment[:data_vencimento]).to eq(Date.current.strftime("%d%m%y"))
-    expect(payment[:nosso_numero]).to eq("123".rjust(11, '0'))
-    expect(payment[:nosso_numero_dv]).to eq('P')
+    expect(payment[:identificacao_titulo]).to eq("123".rjust(11, '0'))
+    expect(payment[:digito_autoconferencia]).to eq('P')
     expect(payment[:cpf_cnpj_pagador]).to eq(pagamento.documento_sacado.rjust(14, '0'))
     expect(payment[:nome_pagador]).to eq(pagamento.nome_sacado.format_size(40))
     expect(payment[:valor_titulo]).to eq("19990".rjust(13, "0"))
