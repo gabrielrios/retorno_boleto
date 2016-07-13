@@ -29,24 +29,24 @@ module Boleto
             ret_pagamento << pagamento[:identificacao_empresa][3]
             ret_pagamento << '02'
             ret_pagamento << Date.today.strftime('%d%m%y')
-            ret_pagamento << pagamento[:numero_documento].rjust(10, " ")
-            ret_pagamento << nosso_numero.rjust(20, ' ')
-            ret_pagamento << pagamento[:data_vencimento]
-            ret_pagamento << pagamento[:valor_titulo]
-            ret_pagamento << pagamento[:codigo_do_banco]
-            ret_pagamento << pagamento[:agencia]
-            ret_pagamento << pagamento[:moeda]
+            ret_pagamento << pagamento[:numero_documento].rjust(10, "0")
+            ret_pagamento << nosso_numero.rjust(20, '0')
+            ret_pagamento << pagamento[:data_vencimento].rjust(6, '0')
+            ret_pagamento << pagamento[:valor_titulo].rjust(13, '0')
+            ret_pagamento << pagamento[:codigo_do_banco].rjust(3, '0')
+            ret_pagamento << pagamento[:agencia].rjust(5, '0')
+            ret_pagamento << pagamento[:moeda].rjust(2, '0')
             ret_pagamento << ''.rjust(13, '0')  # Despesas de cobrança
             ret_pagamento << ''.rjust(13, '0')  # Outras despesas
             ret_pagamento << ''.rjust(13, '0')  # Juros
             ret_pagamento << ''.rjust(13, '0')  # IOF
             ret_pagamento << ''.rjust(13, '0')  # Abatimento
             ret_pagamento << ''.rjust(13, '0')  # Desconto concedido
-            ret_pagamento << pagamento[:valor_titulo] # valor Pago
+            ret_pagamento << pagamento[:valor_titulo].rjust(13, '0') # valor Pago
             ret_pagamento << ''.rjust(13, '0') # Juros de Mora
             ret_pagamento << ''.rjust(13, '0')  # Outro c'reditos
             ret_pagamento << ''.rjust(2, ' ')
-            ret_pagamento << ' ' # Motivo do Código de Ocorrência 25
+            ret_pagamento << ''.rjust(1, ' ') # Motivo do Código de Ocorrência 25
             ret_pagamento << Date.today.strftime('%d%m%y') # Data do Crédito
             ret_pagamento << ''.rjust(3, '0') # Origem Pagamento
             ret_pagamento << ''.rjust(10, ' ')
@@ -56,7 +56,7 @@ module Boleto
             ret_pagamento << ''.rjust(2, '0') # Numero do Cartorio
             ret_pagamento << ''.rjust(10, '0') # Numero do Protocolo
             ret_pagamento << ''.rjust(14, '0')
-            ret_pagamento << pagamento[:sequencial]
+            ret_pagamento << pagamento[:sequencial].rjust(6, '0')
             ret_pagamento
           end
 
