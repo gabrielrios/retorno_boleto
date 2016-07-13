@@ -64,11 +64,12 @@ module Boleto
         end
 
         def header
-          header = "02RETORNO01COBRANCA"
-          header << parser.header[:codigo_empresa].to_s
-          header << parser.header[:nome_empresa]
-          header << parser.header[:cod_banco]
-          header << parser.header[:nome_banco]
+          header = "02RETORNO01"
+          header << "COBRANCA".rjust(15, " ")
+          header << parser.header[:codigo_empresa].to_s.rjust(20, '0')
+          header << parser.header[:nome_empresa].rjust(30, ' ')
+          header << "237"
+          header << parser.header[:nome_banco].rjust(15, ' ')
           header << parser.header[:data_geracao]
           header << '01600000'
           header << ''.rjust(5, '0')

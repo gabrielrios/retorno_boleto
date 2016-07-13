@@ -45,6 +45,13 @@ RSpec.describe Boleto::Generators::Cnab400::Bradesco do
   let(:retorno) { Brcobranca::Retorno::Cnab400::Bradesco.load_lines(tmp_retorno) }
 
   it 'generates a proper header' do
+    header = tmp_retorno.readline
+    expect(header[0..10]).to eq("02RETORNO01")
+    expect(header[11..25]).to eq("COBRANCA".rjust(15, " "))
+    expect(header[46..75]).to eq('SOCIEDADE BRASILEIRA DE ZOOLOGIA LTDA'.format_size(30))
+    expect(header[76..78]).to eq("237")
+    expect(header[94..99]).to eq(Date.current.strftime("%d%m%y"))
+    expect(header[379..384]).to eq(Date.current.strftime("%d%m%y"))
   end
 
   it 'generates a proper payment' do
