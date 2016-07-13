@@ -31,7 +31,7 @@ RSpec.describe Boleto::Parsers::Cnab400::Bradesco do
   before do
     tmpfile.write(bradesco.gera_arquivo)
     tmpfile.rewind
-    parser.parse
+    parser.parse!
   end
 
   let(:header) { parser.header }

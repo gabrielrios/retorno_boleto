@@ -10,7 +10,7 @@ module Boleto
           @file  = file
         end
 
-        def parse
+        def parse!
           @lines = File.readlines(@file)
           @header     = parse_header
           @pagamentos = parse_pagamentos

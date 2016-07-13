@@ -9,6 +9,7 @@ module Boleto
         attr_reader :parser
 
         def perform
+          parser.parse!
           content = []
           content << header
           content += parser.pagamentos.map do |pagamento|
@@ -17,18 +18,18 @@ module Boleto
             ret_pagamento << '02'  # Empresa
             ret_pagamento << ''.rjust(14, '0') # We don't have the company number
             ret_pagamento << ''.rjust(3, '0')
-            ret_pagamento << pagamento[:identificacao_empresa]
-            ret_pagamento << pagamento[:numero_controle]
+            ret_pagamento << pagamento[:identificacao_empresa].rjust(17, " ")
+            ret_pagamento << pagamento[:numero_controle].rjust(25, " ")
             ret_pagamento << ''.rjust(8, '0')
-            ret_pagamento << nosso_numero
+            ret_pagamento << nosso_numero.rjust(12, '0')
             ret_pagamento << ''.rjust(10, '0')
             ret_pagamento << ''.rjust(12, ' ')
-            ret_pagamento << pagamento[:indicador_rateio]
+            ret_pagamento << pagamento[:indicador_rateio].rjust(1, "R")
             ret_pagamento << ''.rjust(2, '0')
-            ret_pagamento << pagamento[:identificacao_empresa][1..3]
+            ret_pagamento << pagamento[:identificacao_empresa][3]
             ret_pagamento << '02'
             ret_pagamento << Date.today.strftime('%d%m%y')
-            ret_pagamento << pagamento[:numero_documento]
+            ret_pagamento << pagamento[:numero_documento].rjust(10, " ")
             ret_pagamento << nosso_numero.rjust(20, ' ')
             ret_pagamento << pagamento[:data_vencimento]
             ret_pagamento << pagamento[:valor_titulo]
@@ -46,13 +47,14 @@ module Boleto
             ret_pagamento << ''.rjust(13, '0')  # Outro c'reditos
             ret_pagamento << ''.rjust(2, ' ')
             ret_pagamento << ' ' # Motivo do Código de Ocorrência 25
-            ret_pagamento << Date.today.strftime('%d%m%y')
+            ret_pagamento << Date.today.strftime('%d%m%y') # Data do Crédito
             ret_pagamento << ''.rjust(3, '0') # Origem Pagamento
             ret_pagamento << ''.rjust(10, ' ')
             ret_pagamento << ''.rjust(4, ' ')
             ret_pagamento << '00'.rjust(10, '0') # Motivo dsa Rejeições
             ret_pagamento << ''.rjust(40, ' ')
-            ret_pagamento << ''.rjust(2, '0') # Numero do Protocolo
+            ret_pagamento << ''.rjust(2, '0') # Numero do Cartorio
+            ret_pagamento << ''.rjust(10, '0') # Numero do Protocolo
             ret_pagamento << ''.rjust(14, '0')
             ret_pagamento << pagamento[:sequencial]
             ret_pagamento
