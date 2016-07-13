@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "pry"
+  spec.add_development_dependency "brcobranca"
 
   spec.add_dependency "parseline", '~> 1.0.3'
 end

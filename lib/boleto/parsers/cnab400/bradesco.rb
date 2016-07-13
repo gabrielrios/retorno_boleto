@@ -7,7 +7,11 @@ module Boleto
         include FixedWidthParser # Extendendo parseline
 
         def initialize(file, options = {})
-          @lines      = File.readlines(file)
+          @file  = file
+        end
+
+        def parse
+          @lines = File.readlines(@file)
           @header     = parse_header
           @pagamentos = parse_pagamentos
         end
@@ -26,8 +30,8 @@ module Boleto
             parse_field :cod_banco,            76..78    # Número do Bradesco na Câmara de Compensação
             parse_field :nome_banco,           79..93    # Nome do Banco Por Extenso
             parse_field :data_geracao,         94..99    # Data da Gravação do Arquivo
-            parse_field :identificao_sistema,  107..109  # Identificação do Sistema
-            parse_field :sequencia_remessa,    110..116  # Número Sequencial da Remessa
+            parse_field :identificacao_sistema,  107..109  # Identificação do Sistema
+            parse_field :sequencial_remessa,    110..116  # Número Sequencial da Remessa
             parse_field :sequencial,           394..399  # Núero Sequencial do Registro de Um em Um
           end.first
         end

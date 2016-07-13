@@ -8,6 +8,5 @@ RSpec.describe Boleto::Generators::Cnab400::Bradesco do
 
   it 'parses the file' do
     generator = described_class.new(path)
-    binding.pry
   end
 end
