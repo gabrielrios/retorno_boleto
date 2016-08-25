@@ -1,5 +1,5 @@
-require 'boleto/generators'
-module Boleto
+require 'retorno_boleto/generators'
+module RetornoBoleto
   class Generator
     def self.for(options)
       format = Generators.const_get(options[:format].capitalize)

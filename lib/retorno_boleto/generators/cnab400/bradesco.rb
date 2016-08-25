@@ -1,10 +1,10 @@
 require 'date'
-module Boleto
+module RetornoBoleto
   module Generators
     module Cnab400
       class Bradesco
         def initialize(path)
-          @parser = ::Boleto::Parsers::Cnab400::Bradesco.new(path)
+          @parser = ::RetornoBoleto::Parsers::Cnab400::Bradesco.new(path)
         end
         attr_reader :parser
 

@@ -4,6 +4,6 @@
 # first when searching the load path
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
-require 'boleto/cli'
+require 'retorno_boleto/cli'
 
-exit Boleto::Cli.new(ARGV).execute
+exit RetornoBoleto::Cli.new(ARGV).execute

@@ -1,6 +1,6 @@
 require 'optparse'
 
-module Boleto
+module RetornoBoleto
   class Options
     def initialize(argv)
       @argv = argv

@@ -1,6 +1,6 @@
-require 'boleto/parser'
+require 'retorno_boleto/parser'
 
-module Boleto
+module RetornoBoleto
   module Parsers
     module Cnab400
       class Bradesco

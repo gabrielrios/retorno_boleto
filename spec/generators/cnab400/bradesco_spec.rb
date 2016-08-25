@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'boleto/generators/cnab400/bradesco'
+require 'retorno_boleto/generators/cnab400/bradesco'
 require 'pry'
 
-RSpec.describe Boleto::Generators::Cnab400::Bradesco do
+RSpec.describe RetornoBoleto::Generators::Cnab400::Bradesco do
   let(:pagamento) do
     Brcobranca::Remessa::Pagamento.new(valor: 199.9,
       data_vencimento: Date.current,
@@ -35,7 +35,7 @@ RSpec.describe Boleto::Generators::Cnab400::Bradesco do
     tmp
   end
 
-  let(:generator) { Boleto::Generators::Cnab400::Bradesco.new(tmpfile) }
+  let(:generator) { RetornoBoleto::Generators::Cnab400::Bradesco.new(tmpfile) }
   let(:tmp_retorno) do
     tmp = Tempfile.new("remessa_bradesco")
     tmp.write(generator.perform)

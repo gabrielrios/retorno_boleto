@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'boleto/version'
+require 'retorno_boleto/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "boleto"
-  spec.version       = Boleto::VERSION
+  spec.version       = RetornoBoleto::VERSION
   spec.authors       = ["Gabriel Rios"]
   spec.email         = ["gabrielfalcaorios@gmail.com"]
 

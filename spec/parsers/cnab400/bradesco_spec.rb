@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'boleto/parsers/cnab400/bradesco'
+require 'retorno_boleto/parsers/cnab400/bradesco'
 
-RSpec.describe Boleto::Parsers::Cnab400::Bradesco do
+RSpec.describe RetornoBoleto::Parsers::Cnab400::Bradesco do
   let(:pagamento) do
     Brcobranca::Remessa::Pagamento.new(valor: 199.9,
       data_vencimento: Date.current,
@@ -26,7 +26,7 @@ RSpec.describe Boleto::Parsers::Cnab400::Bradesco do
   end
   let(:bradesco) { Brcobranca::Remessa::Cnab400::Bradesco.new(params) }
   let(:tmpfile) { Tempfile.new("remessa_bradesco") }
-  let(:parser) { Boleto::Parsers::Cnab400::Bradesco.new(tmpfile) }
+  let(:parser) { RetornoBoleto::Parsers::Cnab400::Bradesco.new(tmpfile) }
 
   before do
     tmpfile.write(bradesco.gera_arquivo)

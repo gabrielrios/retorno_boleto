@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'boleto/options'
+require 'retorno_boleto/options'
 require 'pry'
 
-RSpec.describe Boleto::Options do
+RSpec.describe RetornoBoleto::Options do
   subject { }
 
   it 'defaults format to CNAB400' do

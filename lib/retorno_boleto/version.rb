@@ -1,3 +1,3 @@
-module Boleto
+module RetornoBoleto
   VERSION = "0.1.0"
 end
