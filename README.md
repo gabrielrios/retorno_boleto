@@ -1,8 +1,21 @@
 # RetornoBoleto
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/retorno_boleto`. To experiment with that code, run `bin/console` for an interactive prompt.
+Sempre que estamos desenvolvendo algum sistema que precise fazer geração
+de boletos bancários, um dos grandes problemas é como realizar o testes
+desta integração.
 
-TODO: Delete this and the text above, and describe your gem
+Isto acontece pois é necessário um arquivo de retorno gerado pelo banco para
+que possamos testar o processamento do pagamento.
+
+Na maioria das empresas aonde trabalhei, simplesmente gerávamos um
+boleto com valor baixo e pagávamos para poder assim termos esse retorno,
+porém isso atrasa o desenvolvimento da tarefa.
+
+Para agilizar este processo, criei essa gem que cria arquivos de retorno
+para os bancos assim podendo integrar direto no desenvolvimento.
+
+DISCLAIMER: O teste da integração diretamente como Banco ainda se faz
+necessário, essa gem é apenas uma ajuda para acelerar esse processo
 
 ## Installation
 
@@ -22,7 +35,22 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+  Para gerar o arquivo de retorno precisamos passar para a ferramenta
+  qual o Banco, o formato do arquivo e o Arquivo de remessa
+
+    $ retorno_boleto --bank bradesco --format cnab400 remessa_bradesco.txt
+
+
+OBS: Atualmente somente Bradesco e Cnab400 são suportados
+
+    $ Usage: retorno [options] paths
+        -b, --bank BANK                  which bank you're testing
+        -f, --format [FORMAT]            which format will be used. Default: CNAB400
+        -v, --version                    Show gem's version
+        -h, --help                       Show this message
+
+
+
 
 ## Development
 
@@ -32,7 +60,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/retorno_boleto. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/gabrielrios/retorno_boleto. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License

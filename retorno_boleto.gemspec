@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["gabrielfalcaorios@gmail.com"]
 
   spec.summary       = %q{Gera arquivos de retorno de boletos para testes}
-  spec.description   = %q{Gera arquivos de retorno de boletos para test}
+  spec.description   = %q{Gera arquivos de retorno de boletos para testes}
   spec.homepage      = "http://github.com/gabrielrios/boleto"
   spec.license       = "MIT"
 
